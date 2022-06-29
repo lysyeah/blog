@@ -1,4 +1,7 @@
-##29.1 Hello,world 출력 함수 만들기
+---
+title: "Hello,world 출력 함수 만들기"
+date: '2022-06-28 17:10:00'
+---
 
 
 ```python
