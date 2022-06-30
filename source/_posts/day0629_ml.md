@@ -1,10 +1,3 @@
----
-title: "day0629_ml"
-date: '2022-06-29 10:10:00'
----
-
-
-
 ## 파이썬 주요 라이브러리
   """- Machine learning
   + 정형 데이터
@@ -80,6 +73,7 @@ ax.scatter(bream_length, bream_weight)
 ax.set_xlabel('length')
 ax.set_ylabel('length')
 plt.show() #이처럼 많이쓰니까 이렇게 쓰기. 외우기.암기.
+
 ```
 
 
@@ -95,10 +89,10 @@ plt.show() #이처럼 많이쓰니까 이렇게 쓰기. 외우기.암기.
 smelt_length = [9.8, 10.5, 10.6, 11.0, 11.2, 11.3, 11.8, 11.8, 12.0, 12.2, 12.4, 13.0, 14.3, 15.0]
 smelt_weight = [6.7, 7.5, 7.0, 9.7, 9.8, 8.7, 10.0, 9.9, 9.8, 12.2, 13.4, 12.2, 19.7, 19.9]
 
-fig, ax = plt.subplots()
-ax. scatter(smelt_length, smelt_weight)
-ax. set_xlabel('length')
-ax. set_ylabel('weight')
+plt.scatter(bream_length, bream_weight)
+plt.scatter(smelt_length, smelt_weight)
+plt.xlabel('length')
+plt.ylabel('weight')
 plt.show()
 ```
 
@@ -112,7 +106,7 @@ plt.show()
 
 
 ```python
-legnth  = bream_length + smelt_length
+length  = bream_length + smelt_length
 weight = bream_weight + smelt_weight
 ```
 
@@ -120,17 +114,15 @@ weight = bream_weight + smelt_weight
 
 
 ```python
-fish_data = [[l,w ]] for l, w in zip( length, weight)]
-fish_data[0:5]
+fish_data = [[l,w]for l, w in zip(length,weight)]
+
+print(fish_data)
+
+## [l,m]에서  m을 w로 해놔서 계속 오류가 났었네..
 ```
 
-
-      File "<ipython-input-44-e1245d48509d>", line 1
-        fish_data = [[l,w ]] for l, w in zip( length, weight)]
-                               ^
-    SyntaxError: invalid syntax
+    [[25.4, 242.0], [26.3, 290.0], [26.5, 340.0], [29.0, 363.0], [29.0, 430.0], [29.7, 450.0], [29.7, 500.0], [30.0, 390.0], [30.0, 450.0], [30.7, 500.0], [31.0, 475.0], [31.0, 500.0], [31.5, 500.0], [32.0, 340.0], [32.0, 600.0], [32.0, 600.0], [33.0, 700.0], [33.0, 700.0], [33.5, 610.0], [33.5, 650.0], [34.0, 575.0], [34.0, 685.0], [34.5, 620.0], [35.0, 680.0], [35.0, 700.0], [35.0, 725.0], [35.0, 720.0], [36.0, 714.0], [36.0, 850.0], [37.0, 1000.0], [38.5, 920.0], [38.5, 955.0], [39.5, 925.0], [41.0, 975.0], [41.0, 950.0], [9.8, 6.7], [10.5, 7.5], [10.6, 7.0], [11.0, 9.7], [11.2, 9.8], [11.3, 8.7], [11.8, 10.0], [11.8, 9.9], [12.0, 9.8], [12.2, 12.2], [12.4, 13.4], [13.0, 12.2], [14.3, 19.7], [15.0, 19.9]]
     
-
 
 - 라벨링 해준다 = 지도해준다
 = 지도 학습 
@@ -140,6 +132,9 @@ fish_data[0:5]
 fish_target = [1] * 35 + [0] *14
 print(fish_target)
 ```
+
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
 
 ## 모델
 
@@ -153,6 +148,13 @@ kn = KNeighborsClassifier()
 # 모형 학습
 kn.fit(fish_data, fish_target)
 ```
+
+
+
+
+    KNeighborsClassifier()
+
+
 
 
 ```python
@@ -174,50 +176,35 @@ print(preds)
 
 if preds == 1:
   print("도미")
+
 else:
   print("빙어")
 ```
 
-    물고기 길이를 입력하세요...30
-    물고기 무게를 입력하세요...600
+    물고기 길이를 입력하세요...10
+    물고기 무게를 입력하세요...50
+    0
+    빙어
     
 
 
-    ---------------------------------------------------------------------------
+```python
+'''
+ blog 파일에 넣는 행동 = 백업해두기 위해서(파일 그대로)
+ 왜냐하면 lysyeah.github.io 에
+ 저장할 때 html 확장자로 저장되기 때문에 
+ 수정할 때 불편하다.
 
-    NotFittedError                            Traceback (most recent call last)
+ 구글 코랩에서 .ipynb 다운로드 후---> anaconda 
+--> open the file(= .ipynb)
+--> convert to MD (Mark Down) = saving.md
+--> sourcetree로 add, commit, push 하기.
+--> blog 파일을 우클릭 해서 파이참으로 켠다
+--> hexo 해서 실제 블로그에 올려야하는데 잘 모르겠다.
 
-    <ipython-input-48-f3523e4bb951> in <module>()
-          2 ac_weight = int(input("물고기 무게를 입력하세요..."))
-          3 
-    ----> 4 preds = int(kn.predict([[ac_length, ac_weight]]))
-          5 print(preds)
-          6 
-    
 
-    /usr/local/lib/python3.7/dist-packages/sklearn/neighbors/_classification.py in predict(self, X)
-        212             Class labels for each data sample.
-        213         """
-    --> 214         neigh_dist, neigh_ind = self.kneighbors(X)
-        215         classes_ = self.classes_
-        216         _y = self._y
-    
 
-    /usr/local/lib/python3.7/dist-packages/sklearn/neighbors/_base.py in kneighbors(self, X, n_neighbors, return_distance)
-        698                [2]]...)
-        699         """
-    --> 700         check_is_fitted(self)
-        701 
-        702         if n_neighbors is None:
-    
 
-    /usr/local/lib/python3.7/dist-packages/sklearn/utils/validation.py in check_is_fitted(estimator, attributes, msg, all_or_any)
-       1220 
-       1221     if not fitted:
-    -> 1222         raise NotFittedError(msg % {"name": type(estimator).__name__})
-       1223 
-       1224 
-    
 
-    NotFittedError: This KNeighborsClassifier instance is not fitted yet. Call 'fit' with appropriate arguments before using this estimator.
-
+'''
+```
