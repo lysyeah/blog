@@ -1,16 +1,21 @@
-1. Object Creration - 객체 생성
-2. Viewing Data - 데이터 확인하기
-3. Selection - 선택
-4. Missing Data - 결측치
-5. Operation - 연산
-6. Merge - 병합
-7. Grouping - 그룹화
-8. Reshaping - 변형
-9. Time Series - 시계열
-10. Categoricals - 범주화
-11. Plotting - 그래프
-12. Getting Data In / Out - 데이터 입/출력
-13. Gotchas - 잡았다 !!!!!!! 
+---
+title: "0701_ml_assignment"
+date: '2022-07-01 17:30:00'
+---
+2. 
+3. Object Creration - 객체 생성
+4. Viewing Data - 데이터 확인하기
+5. Selection - 선택
+6. Missing Data - 결측치
+7. Operation - 연산
+8. Merge - 병합
+9. Grouping - 그룹화
+10. Reshaping - 변형
+11. Time Series - 시계열
+12. Categoricals - 범주화
+13. Plotting - 그래프
+14. Getting Data In / Out - 데이터 입/출력
+15. Gotchas - 잡았다 !!!!!!! 
 
 - 일반적으로 각 패키지는 pd, np, plt 라는 이름으로 불러온다.
 
