@@ -1,3 +1,11 @@
+---
+title: "day0705_pycaretsample"
+date: '2022-07-05 16:01:00'
+---
+
+
+
+
 !pip uninstall sklearn -y
 !pip install --upgrade sklearn
 !pip install scikit-learn==0.23.2 --user
