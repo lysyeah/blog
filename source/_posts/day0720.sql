@@ -1,5 +1,7 @@
+-- p92 3장  SQL 문장 살펴보기
+
 SELECT * FROM employees; -- 107 개의 데이터 
--- SELECET 문
+-- SELECT 문
 -- p.92
 -- 급여가 5000이 넘는 사원번호와 사원명 조회
 
@@ -10,10 +12,10 @@ SELECT
     , salary
 
 FROM employees
-WHERE salary < 3000
+WHERE salary > 5000
 ORDER BY employee_id;
 
--- 급여가 5000 이상, job_id, IT,PROG 사원 조회
+-- 급여가 5000 이상, job_id, IT_PROG 사원 조회
 
 SELECT employee_id, emp_name, job_id, salary
 FROM employees
@@ -39,10 +41,82 @@ SELECT * FROM departments;
 
 -- INSERT 문 & UPDATE 문 혼자해보기.
 
+CREATE TABLE ex3_1 (
+    col1 VARCHAR2(10),
+    col2 NUMBER,
+    col3 DATE
+);
+
+INSERT INTO ex3_1 (col1, col2, col3)
+VALUES (('ABC'), 10, SYSDATE);
+
+INSERT INTO ex3_1(col3,col2,col1)
+VALUES (SYSDATE, 10, ('ABC'));
+
+
+INSERT INTO ex3_1 (col1, col2, col3)
+VALUES (('ABC'), 10, 30);
+
+-- 컬럼명 기술 생략 형태
+
+INSERT INTO ex3_1
+VALUES ('GHI',10,SYSDATE);
+
+INSERT INTO ex3_1 (col1,col2)
+VALUES('GHI',20);
+
+INSERT INTO ex3_1
+VALUES ('GHI',20);
+
+-- INSERT ~ SELECT 형태
+
+CREATE TABLE ex3_2(
+    emp_id NUMBER,
+    emp_name VARCHAR2(100)
+);
+
+
+INSERT INTO ex3_2 (emp_id,emp_name)
+SELECT employee_id, emp_name
+FROM employees
+WHERE salary >5000;
+-- 여기서도 컬럼순서와 데이터 타이을 맞추어야한다. 
+-- 그런데 데이터 타입을 맞추지 않아도 INSER 가 성공하는 경우가 있다.
+-- 바로 밑에서 확인해보자
+
+INSERT INTO ex3_1 (col1,col2,col3)
+VALUES (10,'10','2014-01-01');
+
+-- UPDATE문
+
+SELECT * FROM ex3_1;
+
+UPDATE ex3_1
+SET col2 = 50;
+
+SELECT * FROM ex3_1;
+
+UPDATE ex3_1
+SET col3 = SYSDATE
+WHERE col3 = '';
+
+SELECT * FROM ex3_1;
+
+
+UPDATE ex3_1
+SET col3 = SYSDATE
+WHERE col3 IS NULL;
+
+SELECT * FROM ex3_1;
+
+
 -- MERGE 문 p.101
 -- 데이터를 합치다 또는 추가하다
--- 조건을 비교해서 테이블에 해당 조건에 맞는 데이터 없으면 추가
+-- 조건을 비교해서 테이블에 
+-- 해당 조건에 맞는 데이터 없으면 추가
 -- 있으면 UPDATE 문을 수행한다.
+-- 와 개꿀이네
+DROP TABLE ex3_3;
 
 CREATE TABLE ex3_3(
     employee_id NUMBER
@@ -83,7 +157,7 @@ AND manager_id = 146;
 -- MERGE 를 통해서 작성
 -- 관리자 사번 146 중에서 ex3_3 테이블에 없는
 -- 사원의 사번, 관리자 사번, 급여, 급여 * 0.001 
-ex3_3 테이블의 160번 사원의 보너스 금액은 7.5로 신규 입력
+-- ex3_3 table의 160번 사원의 보너스 금액은 7.5로 신규 입력
 
 SELECT * FROM ex3_3;
 
@@ -413,7 +487,11 @@ SELECT employee_id, salary, commission_pct,
     COALESCE (salary * commission_pct, salary) AS salary2
     FROM employees;
 
-... 하기
+-- LNNVL조건식
+
+
+
+
 
 -- p147
 -- GREATEST, LEAST
