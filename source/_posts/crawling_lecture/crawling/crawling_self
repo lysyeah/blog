@@ -1,0 +1,16 @@
+import requests
+
+response = requests.get('https://askdjango.github.io/lv1/')
+
+print(response) 
+print(response.status_code)
+
+for k, v in response.headers.items():
+    print('{}:{}'.format(k,v))
+
+import os
+import requests
+images_urls = ['https://ssl.pstatic.net/melona/libs/1398/1398599/eb3eb6dc11190d003231_20220720191545266.jpg']
+
+for images_url in image_urls: 
+    headers = 
